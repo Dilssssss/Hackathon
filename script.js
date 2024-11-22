@@ -4,6 +4,8 @@
 // Message Function
 // Wait for DOM to load
 // code for location data
+//code text
+//code time
 // https://www.w3schools.com/html/html5_geolocation.asp#:~:text=The%20HTML%20Geolocation%20API%20is%20used%20to%20get%20the%20geographical,unless%20the%20user%20approves%20it.&text=Note%3A%20Geolocation%20is%20most%20accurate,devices%20with%20GPS%2C%20like%20smartphones.
 
 // If location is approved
@@ -14,3 +16,8 @@
 
 // Centralise User
 // if clicked move html doc bac
+
+//Message Dataset
+//If message sent message added to dataset
+//if user time + message time = how far away message is from centre
+
