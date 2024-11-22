@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Omnidirectional Scrolling</title>
+    <style>
+      body {
+        margin: 0;
+        overflow: hidden; /* Disable native scrolling */
+      }
+
+      #canvas-container {
+        position: absolute;
+        width: 4000px; /* Large canvas */
+        height: 4000px;
+        background: repeating-linear-gradient(
+          45deg,
+          #ddd,
+          #ddd 20px,
+          #fff 20px,
+          #fff 40px
+        );
+      }
+
+      .content {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-family: Arial, sans-serif;
+        font-size: 24px;
+        background: rgba(255, 255, 255, 0.8);
+        padding: 10px;
+        border-radius: 5px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="canvas-container">
+      <div class="content">Welcome to the center!</div>
+    </div>
+
+    <script>
+      const container = document.getElementById("canvas-container");
+      let posX = window.innerWidth / 2;
+      let posY = window.innerHeight / 2;
+
+      document.addEventListener("keydown", (e) => {
+        const step = 10; // Scrolling speed
+        switch (e.key) {
+          case "ArrowUp":
+            posY = Math.max(posY - step, 0);
+            break;
+          case "ArrowDown":
+            posY = Math.min(
+              posY + step,
+              container.offsetHeight - window.innerHeight
+            );
+            break;
+          case "ArrowLeft":
+            posX = Math.max(posX - step, 0);
+            break;
+          case "ArrowRight":
+            posX = Math.min(
+              posX + step,
+              container.offsetWidth - window.innerWidth
+            );
+            break;
+        }
+        window.scrollTo(posX, posY);
+      });
+
+      // Mouse drag support
+      let isDragging = false;
+      let startX, startY;
+
+      document.addEventListener("mousedown", (e) => {
+        isDragging = true;
+        startX = e.clientX + posX;
+        startY = e.clientY + posY;
+      });
+
+      document.addEventListener("mousemove", (e) => {
+        if (isDragging) {
+          posX = startX - e.clientX;
+          posY = startY - e.clientY;
+          window.scrollTo(posX, posY);
+        }
+      });
+
+      document.addEventListener("mouseup", () => {
+        isDragging = false;
+      });
+    </script>
+  </body>
+</html>
