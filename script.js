@@ -13,4 +13,4 @@
 // if user and message location is equal check time data if the difference is small position message closer to the center 
 
 // Centralise User
-// if clicked move html doc bac
+// if clicked move html doc back
